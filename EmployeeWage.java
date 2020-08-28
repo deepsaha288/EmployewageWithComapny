@@ -1,12 +1,19 @@
 public class EmployeeWage
 {
                 //CONSTANTS
-        public static final int partTime=1;
-	public static final int fullTime=2;
-	public static final int absent=0;
-	public static final int empRatePerHrs=20;
-        public static final int maxWorkingHrs=100;
-        public static final int maxDays=20;
+         final int partTime=1;
+	 final int fullTime=2;
+	 final int absent=0;
+	 final int empRatePerHrs;
+         final int maxWorkingHrs;
+         final int maxDays;
+
+             //CONSTRUCTOR
+ public EmployeeWage(int empRatePerHrs,int maxWorkingHrs,int maxDays){
+		this. empRatePerHrsmpRatePerHrs;
+		this. maxWorkingHrs=  maxWorkingHrs;
+		this.maxDays=maxDays;
+ }
 
 	public void calculatedEmployeeWage()
 	{
@@ -57,7 +64,7 @@ public class EmployeeWage
     public static void main(String args[]){
 
     //create object of class
-    EmployeeWage employee = new EmployeeWage();
+    EmployeeWage employee = new EmployeeWage(20,100,20);
 
     //method call
     employee.calculatedEmployeeWage();
