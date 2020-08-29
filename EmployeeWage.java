@@ -1,15 +1,15 @@
 public class EmployeeWage
 {
 //CONSTANTS
-	final int abset=0;
+	final int absent=0;
 	final int PartTime=1;
 	final int FullTime=2;
 
 	//VARIABLES
-	final String companyName;
-	final int empRatePerHour;
-	final int maxWorkingHour;
-	final int maxDays;
+	private String companyName;
+	private int empRatePerHour;
+	private int maxWorkingHour;
+	private int maxDays;
 
 	//CONSTRUCTOR
 
@@ -20,10 +20,8 @@ public class EmployeeWage
 		this.maxDays=maxDays;
 	}
 
-	/**
-	*calculate employee daily wages based on type of employee
-	  return-total employee wage
-	*/
+
+	//calculate employee daily wages based on type of employe
 	public int calculatedEmployeeWage()
 	{
 		//VARIABLES
@@ -65,12 +63,12 @@ public class EmployeeWage
 		return totalSalary;
 	}
 
-	//main method
+
    public static void main(String args[]){
 
    //created object of class
    EmployeeWage DellEmployee = new EmployeeWage("Dell",20,100,20);
-	int totalDellEmpWage=tcsEmployee.calculatedEmployeeWage();
+	int totalDellEmpWage=DellEmployee.calculatedEmployeeWage();
 	System.out.println("Total Wage of Dell Employee:" +totalDellEmpWage);
 
 	//created object of class
