@@ -1,16 +1,12 @@
+import java.util.ArrayList;
 
-//declare interface
-interface employeeWageMethod
-      {
-	public int calculatedEmployeeWage( CompanyEmpWage companyEmployee);
-    }
-//implements interface class
-       public class EmployeeWage implements employeeWageMethod{
+public class EmployeeWage {
 
 	//calculate employee daily wages based on type of employee
 
-   public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
-   {
+
+	public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
+	    {
 		//VARIABLES
 		int totalEmployeeHour=0;
 		int employeeHour=0;
@@ -18,7 +14,7 @@ interface employeeWageMethod
 		int totalWorkingDays=0;
 
 		while(totalWorkingDays<companyEmployee.getMaxDays() && totalEmployeeHour<companyEmployee.getMaxWorkingHour())
-		{
+		   {
 			totalWorkingDays++;
 
 	 		//COMPUTATION
@@ -47,30 +43,29 @@ interface employeeWageMethod
 		return totalWage;
 		}
 
-	public static void main(String args[])
-        {
 
-    	//created object of class
+	  public static void main(String args[])
+           {
+
+    	     //created object of class
     	EmployeeWage employeeWage = new EmployeeWage();
 
     	//DECLARING ARRAY OF COMPANY EMPLOYEE WAGE OBJECT
-    	CompanyEmpWage[] company=new CompanyEmpWage[3];
+    	ArrayList<CompanyEmpWage> company=new ArrayList<CompanyEmpWage>();
 
-    	company[0]=new CompanyEmpWage("TCS",20,100,20);
-    	employeeWage.calculatedEmployeeWage(company[0]);
+    	company.add(new CompanyEmpWage("Accenture",20,100,20));
+    	employeeWage.calculatedEmployeeWage(company.get(0));
 
-    	company[1]=new CompanyEmpWage("Infosys",10,50,20);
-    	employeeWage.calculatedEmployeeWage(company[1]);
+    	company.add(new CompanyEmpWage("IBM",10,50,20));
+    	employeeWage.calculatedEmployeeWage(company.get(1));
 
-    	company[2]=new CompanyEmpWage("Wipro",10,30,10);
-    	employeeWage.calculatedEmployeeWage(company[2]);
-
-        }
+    	company.add(new CompanyEmpWage("Dell",10,30,10));
+    	employeeWage.calculatedEmployeeWage(company.get(2));
+  	 }
 }
 
-
 class CompanyEmpWage
-{
+   {
      //VARIABLES
      private String companyName;
      private int empRatePerHour;
@@ -113,10 +108,9 @@ class CompanyEmpWage
      }
 
 	  public void setTotalWage( int totalWage )
-          {
+         {
 	 	this.totalWage = totalWage;
 	  }
 
 
 }
-
