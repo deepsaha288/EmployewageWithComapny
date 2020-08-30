@@ -1,53 +1,12 @@
-/**
- *
- * @author DEEP
- */
-import java.util.Scanner;
+
+
 public class EmployeeWage {
-    //VARIABLES
-	private String companyName;
-	private int empRatePerHour;
-	private int maxWorkingHour;
-	private int maxDays;
-	private int totalWage;
-
-	//CONSTRUCTOR
-
- public EmployeeWage(final String companyName,final int empRatePerHour,final int maxWorkingHour,final int maxDays)
-        {
-		this.companyName=companyName;
-		this.empRatePerHour=empRatePerHour;
-		this.maxWorkingHour=maxWorkingHour;
-		this.maxDays=maxDays;
-	}
-
-	public String getCompanyName(){
-		return companyName;
-	}
-
-	 public int getEmpRatePerHour(){
-            return empRatePerHour;
-         }
-
-	 public int getMaxWorkingHour(){
-          return maxWorkingHour;
-         }
-
-	 public int getMaxDays(){
-            return maxDays;
-         }
-
-	 public int getTotalWage(){
-            return totalWage;
-         }
 
 
 	/**
 	*calculate employee daily wages based on type of employee
-     * @return 
-	*@return-> total employee wage 
 	*/
-	public int calculatedEmployeeWage()
+	public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
 	{
 		//VARIABLES
 		int totalEmployeeHour=0;
@@ -55,15 +14,14 @@ public class EmployeeWage {
 		int totalWage=0;
 		int totalWorkingDays=0;
 
-		while(totalWorkingDays<getMaxDays() && totalEmployeeHour<getMaxWorkingHour())
+		while(totalWorkingDays<companyEmployee.getMaxDays() && totalEmployeeHour<companyEmployee.getMaxWorkingHour())
 		{
 			totalWorkingDays++;
 
 	 		//COMPUTATION
 			int empCheck = (int)( Math.random() * 10 ) % 3;
 
-			switch(empCheck)
-                      {
+			switch(empCheck){
 				case 1:
 					employeeHour=4;
 					break;
@@ -74,37 +32,76 @@ public class EmployeeWage {
 
 				 default:
 					employeeHour=0;
-		      }
+			}
 
 		//calculated total employee hour
 		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
 		//calculated total Salary
-		totalWage=(getEmpRatePerHour() * totalEmployeeHour);
-
-                }
-		//return totalWage
+		companyEmployee.setTotalWage(companyEmployee.getEmpRatePerHour() * totalEmployeeHour);
+		}
+                 System.out.println("Total Wage of " + companyEmployee.getCompanyName() + " Employee is " + companyEmployee.getTotalWage());
 		         return totalWage;
-	}
-        public static void main(String[] args)
-          {
-		int maxDays,maxWorkingHour,empRatePerHour;
+		}
 
-                     // Create a Scanner object
-                Scanner Keyword = new Scanner(System.in); 
-    		System.out.println("Enter Company Name");
-    		String companyName = Keyword.nextLine();
-		System.out.println("Enter Employee rate per hours");
-		empRatePerHour=Keyword.nextInt();
-		System.out.println("Enter workings days");
-		maxDays=Keyword.nextInt();
-		System.out.println("Enter Maximum hours in month");
-		maxWorkingHour=Keyword.nextInt();
-		EmployeeWage  obj1= new EmployeeWage(companyName,empRatePerHour,maxDays,maxWorkingHour);
-		int totalComWage=obj1.calculatedEmployeeWage();
-                System.out.println("Total Wage of  Employee:" +totalComWage);
-           }
+	public static void main(String args[]){
+
+    	//created object of class
+    	EmployeeWage employeeWage = new EmployeeWage();
+
+    	//DECLARING ARRAY OF COMPANY EMPLOYEE WAGE OBJECT
+    	CompanyEmpWage[] company=new CompanyEmpWage[3];
+
+    	company[0]=new CompanyEmpWage("TCS",20,100,20);
+    	employeeWage.calculatedEmployeeWage(company[0]);
+
+    	company[1]=new CompanyEmpWage("IBM",10,70,20);
+    	employeeWage.calculatedEmployeeWage(company[1]);
+
+    	company[2]=new CompanyEmpWage("Flipkart",10,50,20);
+    	employeeWage.calculatedEmployeeWage(company[2]);
+  	 }
+}
 
 
-    }
+class CompanyEmpWage{
+     //VARIABLES
+     private String companyName;
+     private int empRatePerHour;
+     private int maxWorkingHour;
+     private int maxDays;
+     private int totalWage=0;
+
+     //CONSTRUCTOR
+     public CompanyEmpWage(final String companyName,final int empRatePerHour,final int maxWorkingHour,final int maxDays){
+       this.companyName=companyName;
+       this.empRatePerHour=empRatePerHour;
+       this.maxWorkingHour=maxWorkingHour;
+       this.maxDays=maxDays;
+     }
+
+     public String getCompanyName(){
+       return companyName;
+     }
+
+     public int getEmpRatePerHour(){
+       return empRatePerHour;
+     }
+
+     public int getMaxWorkingHour(){
+       return maxWorkingHour;
+     }
+
+     public int getMaxDays(){
+       return maxDays;
+     }
+
+     public int getTotalWage(){
+       return totalWage;
+     }
+
+	  public void setTotalWage( int totalWage ){
+	 	this.totalWage = totalWage;
+	  }
+}
 
