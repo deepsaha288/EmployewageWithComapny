@@ -1,26 +1,39 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class EmployeeWage {
+//create interface calss
+ interface employee
+{
+
+	public void calculatedEmployeeWage( CompanyEmpWage companyEmployee );
+
+}
+
+public class EmployeeWage  implements employee{
+
+   HashMap<Integer, Integer> empDailyAndTotalWage = new HashMap<>();
 
 	//calculate employee daily wages based on type of employee
 
 
-	public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
-	    {
+	public void calculatedEmployeeWage(CompanyEmpWage companyEmployee)
+
+        {
 		//VARIABLES
 		int totalEmployeeHour=0;
 		int employeeHour=0;
 		int totalWage=0;
 		int totalWorkingDays=0;
-
+		int empDailyWage=0;
+		int empTotalWage=0;
 		while(totalWorkingDays<companyEmployee.getMaxDays() && totalEmployeeHour<companyEmployee.getMaxWorkingHour())
-		   {
+		{
 			totalWorkingDays++;
 
 	 		//COMPUTATION
 			int empCheck = (int)( Math.random() * 10 ) % 3;
 
-			switch(empCheck){
+			        switch(empCheck)
+                      {
 				case 1:
 					employeeHour=4;
 					break;
@@ -36,18 +49,27 @@ public class EmployeeWage {
 		//calculated total employee hour
 		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
-		//calculated total Salary
-		companyEmployee.setTotalWage(companyEmployee.getEmpRatePerHour() * totalEmployeeHour);
+		//Daily Employee Wage
+		empDailyWage=employeeHour*companyEmployee.getEmpRatePerHour();
+
+		//total employee Wage
+		empTotalWage=totalEmployeeHour*companyEmployee.getEmpRatePerHour();
+
+		empDailyAndTotalWage.put(empDailyWage,empTotalWage);
+
+		for (int i:empDailyAndTotalWage.keySet())
+            System.out.println("Daily Wage --> "+ i + "total employee wage-->" + empDailyAndTotalWage.get(i));
+
 		}
-		System.out.println("Total Wage of " + companyEmployee.getCompanyName() + " Employee is " + companyEmployee.getTotalWage());
-		return totalWage;
-		}
+
+	}
 
 
-	  public static void main(String args[])
-           {
+	public static void main(String args[])
 
-    	     //created object of class
+         {
+
+    	//created object of class
     	EmployeeWage employeeWage = new EmployeeWage();
 
     	//DECLARING ARRAY OF COMPANY EMPLOYEE WAGE OBJECT
@@ -65,7 +87,7 @@ public class EmployeeWage {
 }
 
 class CompanyEmpWage
-   {
+    {
      //VARIABLES
      private String companyName;
      private int empRatePerHour;
@@ -108,9 +130,7 @@ class CompanyEmpWage
      }
 
 	  public void setTotalWage( int totalWage )
-         {
+          {
 	 	this.totalWage = totalWage;
 	  }
-
-
 }
